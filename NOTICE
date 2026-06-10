@@ -1,0 +1,51 @@
+Open Agent Team
+===============
+
+This repository is licensed under the MIT License. See LICENSE.
+
+Third-party skill sources
+-------------------------
+
+Some bundled teams include skills that were adapted from external open-source
+repositories. Those materials remain subject to their original licenses.
+
+1. haowjy/creative-writing-skills
+   Source: https://github.com/haowjy/creative-writing-skills
+   License: Apache License 2.0
+   Used in: teams/story_team
+   Local references:
+   - teams/story_team/skills/story-architecture
+   - teams/story_team/skills/scene-construction
+   - teams/story_team/skills/prose-writing
+   - teams/story_team/skills/prose-critique
+   - teams/story_team/skills/writing-principles
+
+2. huggingface/skills
+   Source: https://github.com/huggingface/skills
+   License: Apache License 2.0
+   Used in: teams/paper_survey_team
+   Local references:
+   - teams/paper_survey_team/skills/huggingface-papers
+
+3. NousResearch/hermes-agent
+   Source: https://github.com/NousResearch/hermes-agent
+   License: MIT License
+   Used in: teams/paper_survey_team
+   Local references:
+   - teams/paper_survey_team/skills/arxiv
+
+4. bytedance/deer-flow
+   Source: https://github.com/bytedance/deer-flow
+   License: MIT License
+   Used in: teams/paper_survey_team
+   Local references:
+   - teams/paper_survey_team/skills/systematic-literature-review
+   - teams/paper_survey_team/skills/academic-paper-review
+   - teams/paper_survey_team/skills/deep-research
+
+Copies of the Apache License 2.0 and MIT License are included under
+THIRD_PARTY_LICENSES/.
+
+When adding, replacing, or updating bundled third-party skills, update this
+NOTICE file and preserve any license or notice text required by the upstream
+project.
