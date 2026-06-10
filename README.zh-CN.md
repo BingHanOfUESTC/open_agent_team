@@ -1,6 +1,7 @@
 <p align="center">
-  <img src="docs/images/project_logo.png" alt="Open Agent Team logo" width="280">
+  <img src="docs/images/project_logo.png" alt="Open Agent Team logo" width="720">
 </p>
+
 
 <h1 align="center">Open Agent Team</h1>
 
@@ -78,10 +79,13 @@ agent_team install --name ppt_writer_team --path /path/to/your/project
 #### PPT Writer 演示案例
 
 <p align="center">
-  <a href="docs/vedio/ppt_writer_team_example_final.mp4">
-    <img src="docs/images/ppt_writer_team_cover.png" alt="观看 ppt_writer_team 演示视频" width="720">
+  <a href="https://github.com/user-attachments/assets/e2bdfb2f-3d30-41da-bff0-ea122c7426d6">
+    <img src="docs/images/ppt_writer_team_cover.png"
+         alt="Watch ppt_writer_team demo"
+         width="400">
   </a>
 </p>
+
 
 <p align="center">
   <strong>▶ 点击图片观看 ppt_writer_team 演示视频</strong>

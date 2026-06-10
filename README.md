@@ -1,6 +1,8 @@
 <p align="center">
-  <img src="docs/images/project_logo.png" alt="Open Agent Team logo" width="280">
+  <img src="docs/images/project_logo.png" alt="Open Agent Team logo" width="720">
 </p>
+
+
 
 <h1 align="center">Open Agent Team</h1>
 
@@ -78,10 +80,13 @@ The team can also extract visual style from an existing PPT template while avoid
 #### PPT Writer Demo
 
 <p align="center">
-  <a href="docs/vedio/ppt_writer_team_example_final.mp4">
-    <img src="docs/images/ppt_writer_team_cover.png" alt="Watch ppt_writer_team demo" width="720">
+  <a href="https://github.com/user-attachments/assets/e2bdfb2f-3d30-41da-bff0-ea122c7426d6">
+    <img src="docs/images/ppt_writer_team_cover.png"
+         alt="Watch ppt_writer_team demo"
+         width="400">
   </a>
 </p>
+
 
 <p align="center">
   <strong>▶ Click the image to watch the ppt_writer_team demo</strong>
