@@ -138,6 +138,7 @@ agent_team install --name ppt_writer_team --path /path/to/your/project
 | `codebase_onboarding_team` | 快速理解陌生代码仓库 | onboarding guide、architecture map、key files、quickstart |
 | `software_architect_team` | 从需求到架构设计 | 需求拆解、架构方案、API/data model、roadmap |
 | `iphone_app_team` | iPhone App 产品、设计和工程交接 | 产品范围、信息架构、设计系统、iOS 架构、QA handoff |
+| `skill_creator_team` | 根据用户问题、期望输出和工作流样例创建可复用 skill | generated skill、验证用例、gotchas、维护报告 |
 | `skills_evolving_team` | skill 设计、评估和迭代 | reusable skills、评估 rubric、迭代报告 |
 | `team_creator` | 创建新的可安装 agent team | 新 team 目录、agents、protocols、skills、验证报告 |
 

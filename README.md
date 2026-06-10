@@ -139,6 +139,7 @@ Engineering teams produce practical artifacts:
 | `codebase_onboarding_team` | Understanding unfamiliar repositories | onboarding guide, architecture map, key files, quickstart |
 | `software_architect_team` | Requirements-to-architecture planning | requirements breakdown, architecture, API/data model, roadmap |
 | `iphone_app_team` | iPhone app product/design/engineering handoff | product scope, IA, design system, iOS architecture, QA handoff |
+| `skill_creator_team` | Create reusable skills from user problems, expected outputs, and workflow examples | generated skill folder, validation cases, gotchas, maintenance report |
 | `skills_evolving_team` | Skill design, evaluation, and improvement | reusable skills, evaluation rubric, iteration report |
 | `team_creator` | Create new installable agent teams | new team directory, agents, protocols, skills, validation report |
 

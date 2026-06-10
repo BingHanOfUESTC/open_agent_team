@@ -26,6 +26,12 @@ agent_team list --verbose
 agent_team install --name story_team --path /path/to/project
 ```
 
+For creating reusable skills from user problems or expected outputs, use:
+
+```bash
+agent_team install --name skill_creator_team --path /path/to/project
+```
+
 Custom teams do not need to live in this directory. Register them with:
 
 ```bash
