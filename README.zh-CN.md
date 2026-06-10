@@ -77,7 +77,15 @@ agent_team install --name ppt_writer_team --path /path/to/your/project
 
 #### PPT Writer 演示案例
 
-<video src="docs/vedio/ppt_writer_team_example_final.mp4" controls=""></video>
+<p align="center">
+  <a href="docs/vedio/ppt_writer_team_example_final.mp4">
+    <img src="docs/images/ppt_writer_team_cover.png" alt="观看 ppt_writer_team 演示视频" width="720">
+  </a>
+</p>
+
+<p align="center">
+  <strong>▶ 点击图片观看 ppt_writer_team 演示视频</strong>
+</p>
 
 仓库中也内置了两套完整输入/输出示例，位于 [examples/ppt_writer_examples](examples/ppt_writer_examples/)：
 

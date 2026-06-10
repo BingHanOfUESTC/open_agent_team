@@ -77,7 +77,15 @@ The team can also extract visual style from an existing PPT template while avoid
 
 #### PPT Writer Demo
 
-<video src="docs/vedio/ppt_writer_team_example_final.mp4" controls=""></video>
+<p align="center">
+  <a href="docs/vedio/ppt_writer_team_example_final.mp4">
+    <img src="docs/images/ppt_writer_team_cover.png" alt="Watch ppt_writer_team demo" width="720">
+  </a>
+</p>
+
+<p align="center">
+  <strong>▶ Click the image to watch the ppt_writer_team demo</strong>
+</p>
 
 Two complete input/output examples are included under [examples/ppt_writer_examples](examples/ppt_writer_examples/):
 
