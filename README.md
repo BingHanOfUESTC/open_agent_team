@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="README.zh-CN.md">中文</a> | <a href="#quick-start">Quick Start</a> | <a href="#teams">Teams</a> | <a href="#what-you-get">What You Get</a>
+  <a href="README.zh-CN.md">中文</a> | <a href="#quick-start">Quick Start</a> | <a href="#ppt-writer-demo">PPT Demo</a> | <a href="#teams">Teams</a> | <a href="#what-you-get">What You Get</a>
 </p>
 
 ---
@@ -74,6 +74,19 @@ The installer creates:
 - `deck_spec/deck_spec.json`: structured deck plan for review and regeneration.
 
 The team can also extract visual style from an existing PPT template while avoiding unrelated template content reuse.
+
+#### PPT Writer Demo
+
+<video src="docs/vedio/ppt_writer_team_example_final.mp4" controls=""></video>
+
+Two complete input/output examples are included under [examples/ppt_writer_examples](examples/ppt_writer_examples/):
+
+| Example | Prompt input | Editable deck | Speaker notes | Source trace | Executive summary |
+| --- | --- | --- | --- | --- | --- |
+| English Van Gogh deck | [prompt_input1.txt](examples/ppt_writer_examples/prompt_input1.txt) | [final_deck.pptx](examples/ppt_writer_examples/delivery1/final_deck.pptx) | [speaker_notes.md](examples/ppt_writer_examples/delivery1/speaker_notes.md) | [source_trace.md](examples/ppt_writer_examples/delivery1/source_trace.md) | [executive_summary.md](examples/ppt_writer_examples/delivery1/executive_summary.md) |
+| Chinese Van Gogh deck | [prompt_input2.txt](examples/ppt_writer_examples/prompt_input2.txt) | [final_deck.pptx](examples/ppt_writer_examples/delivery2/final_deck.pptx) | [speaker_notes.md](examples/ppt_writer_examples/delivery2/speaker_notes.md) | [source_trace.md](examples/ppt_writer_examples/delivery2/source_trace.md) | [executive_summary.md](examples/ppt_writer_examples/delivery2/executive_summary.md) |
+
+These examples show the intended end state: a polished editable PPT, a readable talk track, an executive summary, and source-backed trace files that make the deck easier to review and trust.
 
 ### Paper Surveys You Can Actually Use
 

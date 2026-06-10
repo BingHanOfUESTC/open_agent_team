@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="README.md">English</a> | <a href="#快速开始">快速开始</a> | <a href="#内置团队">内置团队</a> | <a href="#你会得到什么">你会得到什么</a>
+  <a href="README.md">English</a> | <a href="#快速开始">快速开始</a> | <a href="#ppt-writer-演示案例">PPT Demo</a> | <a href="#内置团队">内置团队</a> | <a href="#你会得到什么">你会得到什么</a>
 </p>
 
 ---
@@ -74,6 +74,19 @@ agent_team install --name ppt_writer_team --path /path/to/your/project
 - `deck_spec/deck_spec.json`：结构化页面方案，方便审查和重新生成。
 
 如果你提供现成 PPT 模板，团队可以提取版式、字体、色彩和视觉风格，但不会复用无关内容。
+
+#### PPT Writer 演示案例
+
+<video src="docs/vedio/ppt_writer_team_example_final.mp4" controls=""></video>
+
+仓库中也内置了两套完整输入/输出示例，位于 [examples/ppt_writer_examples](examples/ppt_writer_examples/)：
+
+| 示例 | 输入 prompt | 可编辑 PPT | 讲稿备注 | 来源追踪 | 执行摘要 |
+| --- | --- | --- | --- | --- | --- |
+| 英文梵高艺术史 PPT | [prompt_input1.txt](examples/ppt_writer_examples/prompt_input1.txt) | [final_deck.pptx](examples/ppt_writer_examples/delivery1/final_deck.pptx) | [speaker_notes.md](examples/ppt_writer_examples/delivery1/speaker_notes.md) | [source_trace.md](examples/ppt_writer_examples/delivery1/source_trace.md) | [executive_summary.md](examples/ppt_writer_examples/delivery1/executive_summary.md) |
+| 中文梵高艺术史 PPT | [prompt_input2.txt](examples/ppt_writer_examples/prompt_input2.txt) | [final_deck.pptx](examples/ppt_writer_examples/delivery2/final_deck.pptx) | [speaker_notes.md](examples/ppt_writer_examples/delivery2/speaker_notes.md) | [source_trace.md](examples/ppt_writer_examples/delivery2/source_trace.md) | [executive_summary.md](examples/ppt_writer_examples/delivery2/executive_summary.md) |
+
+这两个案例展示了 `ppt_writer_team` 的目标交付形态：可编辑 PPT、可直接讲解的讲稿、执行摘要，以及便于审查可信度的来源追踪文件。
 
 ### 方便筛选阅读的论文调研
 
