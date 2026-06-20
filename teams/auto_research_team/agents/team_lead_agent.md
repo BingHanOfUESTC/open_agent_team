@@ -97,10 +97,10 @@ Boss 指定环境、代码库或数据路径
    明确研究边界、评价目标、硬件约束和验收标准。
 
 2. literature_discovery_agent
-   检索最新论文、代码仓库、数据集、benchmark、leaderboard 和复现资料。
+   按 breadth/depth/gap/recency 四轮检索最新论文、代码仓库、数据集、benchmark、leaderboard 和复现资料。
 
 3. paper_deep_read_agent
-   深读关键论文，形成 evidence cards 和方法对比。
+   深读关键论文，形成 evidence cards、claim ledger、citation coverage 和方法对比。
 
 4. gap_idea_agent
    基于证据提出待改进点和候选 idea，列出可验证假设和失败风险。
@@ -138,11 +138,11 @@ Boss 指定环境、代码库或数据路径
 
 ```text
 Scope Gate：研究目标、指标、约束明确后才能进入调研。
-Evidence Gate：至少有关键论文和来源记录后才能提出 idea。
+Evidence Gate：至少满足文献深度目标或写明 niche-field exception 后才能提出 idea。
 Plan Gate：idea 必须对应可运行实验和停止条件。
 Environment Gate：环境或降级环境通过 smoke test 后才能宣称可实验。
 Experiment Gate：结果必须来自日志、表格或可追溯输出。
-Paper Gate：LaTeX 报告中的每个核心结论必须能回溯到证据或实验。
+Paper Gate：LaTeX 报告中的每个核心结论必须能回溯到证据或实验，Related Work 引用密度必须达标。
 Delivery Gate：交付包必须包含 manifest 和 reproduction guide。
 ```
 
@@ -154,6 +154,12 @@ Delivery Gate：交付包必须包含 manifest 和 reproduction guide。
 research_workspace/00_boss_brief.md
 research_workspace/01_research_scope.md
 research_workspace/02_literature_inventory.md
+research_workspace/literature/search_plan.md
+research_workspace/literature/paper_inventory.tsv
+research_workspace/literature/citation_coverage.md
+research_workspace/literature/claim_ledger.md
+research_workspace/literature/gap_map.md
+research_workspace/literature/cards/
 research_workspace/03_deep_read_notes.md
 research_workspace/04_gap_and_ideas.md
 research_workspace/05_research_plan.md

@@ -26,6 +26,9 @@ skills/autoresearch-orchestration/
 skills/literature-evidence-mapping/
   用于 literature_discovery_agent、paper_deep_read_agent、gap_idea_agent。建立 evidence cards、citation ledger 和 gap map。
 
+skills/research-depth-control/
+  用于 literature_discovery_agent、paper_deep_read_agent、latex_report_agent。强制 breadth/depth/gap/recency 检索、深读配额、引用覆盖和 claim ledger。
+
 skills/research-ideation-screening/
   用于 gap_idea_agent、research_plan_agent。把候选 idea 按新颖性、可实现性、可证伪性、资源成本和失败风险排序。
 
@@ -70,7 +73,7 @@ K-Dense-AI/scientific-agent-skills
 # 3. 能力路由
 
 ```text
-论文检索：优先使用 arXiv、Semantic Scholar、OpenReview、ACL Anthology、Papers With Code、Google Scholar 可访问页面和官方项目页。
+论文检索：优先使用 arXiv、Semantic Scholar、OpenReview、ACL Anthology、Papers With Code、Google Scholar 可访问页面和官方项目页；必须覆盖 breadth、depth、gap、recency 四类检索。
 代码检索：优先使用论文官方仓库、作者主页、Papers With Code 链接和组织级 GitHub。
 数据检索：优先使用数据集官方页、Hugging Face Datasets、Kaggle、OpenML、官方 benchmark 页面。
 环境搭建：优先复用仓库 requirements、environment.yml、pyproject.toml、Dockerfile 或 Boss 指定环境。
@@ -105,4 +108,15 @@ URL 或本地路径
 许可证
 用途
 风险或限制
+```
+
+文献资源还必须记录：
+
+```text
+检索轮次
+是否全文可读
+是否深读
+是否进入 BibTeX
+可支撑的 claim
+不可支撑的 claim
 ```

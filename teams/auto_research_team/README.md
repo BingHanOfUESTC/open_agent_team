@@ -78,6 +78,7 @@ protocols/skill_registry.md           可用能力和外部工具路由说明。
 ```text
 skills/autoresearch-orchestration/       双循环自动科研编排：内层实验优化，外层证据综合和交付。
 skills/literature-evidence-mapping/      文献检索、证据卡、引用核验和研究脉络映射。
+skills/research-depth-control/           控制调研深度、文献覆盖、深读配额和论文引用密度。
 skills/research-ideation-screening/      从文献 gap 生成候选 idea，并按可验证性和风险筛选。
 skills/reproducible-code-data-setup/     代码、数据、环境、许可证和安全准备流程。
 skills/experiment-iteration-loop/        baseline、main、ablation、robustness 和失败诊断实验循环。
@@ -125,8 +126,8 @@ K-Dense-AI/scientific-agent-skills
 ```text
 1. 建立 research_workspace/00_boss_brief.md
 2. 明确研究范围、约束、硬件和验收标准
-3. 检索前沿论文、代码、数据集和 benchmark
-4. 深读关键工作并建立 evidence cards
+3. 按 breadth/depth/gap/recency 四轮检索前沿论文、代码、数据集和 benchmark
+4. 深读关键工作并建立 evidence cards、claim ledger 和 citation coverage map
 5. 推理待改进点，提出 2-4 个候选 idea
 6. 选择主 idea，写研究计划和实验矩阵
 7. 下载合规代码和数据，搭建环境
@@ -159,6 +160,12 @@ research_workspace/
   00_boss_brief.md
   01_research_scope.md
   02_literature_inventory.md
+  literature/search_plan.md
+  literature/paper_inventory.tsv
+  literature/citation_coverage.md
+  literature/claim_ledger.md
+  literature/gap_map.md
+  literature/cards/
   03_deep_read_notes.md
   04_gap_and_ideas.md
   05_research_plan.md

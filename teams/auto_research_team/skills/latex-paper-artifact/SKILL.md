@@ -47,6 +47,17 @@ ethics or broader impact when relevant
 appendix
 ```
 
+Default citation floor:
+
+```text
+Introduction: at least 4 cited works
+Related Work: at least 12 cited works for normal ML/CS reports
+Method: cite every reused or adapted method component
+Experiments: cite datasets, benchmarks, metrics, baselines, and public result sources
+```
+
+If the citation floor is not met, do not pad with weakly related papers. Return to literature discovery or record a narrow-scope exception.
+
 ---
 
 # 3. Claim Discipline
@@ -59,6 +70,12 @@ experiment id
 result table row
 figure script
 documented limitation
+```
+
+Also verify the claim appears in:
+
+```text
+research_workspace/literature/claim_ledger.md
 ```
 
 Do not write:
@@ -116,3 +133,8 @@ reproduction guide
 known limitations
 ```
 
+Before finalizing, update:
+
+```text
+research_workspace/literature/citation_coverage.md
+```

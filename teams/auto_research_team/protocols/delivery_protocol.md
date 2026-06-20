@@ -24,6 +24,12 @@ applies_to:
 research_workspace/00_boss_brief.md
 research_workspace/01_research_scope.md
 research_workspace/02_literature_inventory.md
+research_workspace/literature/search_plan.md
+research_workspace/literature/paper_inventory.tsv
+research_workspace/literature/citation_coverage.md
+research_workspace/literature/claim_ledger.md
+research_workspace/literature/gap_map.md
+research_workspace/literature/cards/
 research_workspace/03_deep_read_notes.md
 research_workspace/04_gap_and_ideas.md
 research_workspace/05_research_plan.md
@@ -103,8 +109,8 @@ PDF 路径
 Boss 能看懂研究问题、idea、计划、实现、实验和结论。
 Boss 能按 reproduction guide 找到代码入口和实验入口。
 论文报告中的核心结论能回溯到实验或文献证据。
+论文报告的引用覆盖满足 depth targets，或明确记录已批准/合理的降级原因。
 没有把失败实验隐藏起来。
 没有把未完整验证的结论包装成强结论。
 代码、数据、模型和第三方仓库来源清楚。
 ```
-
