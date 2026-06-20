@@ -35,6 +35,13 @@ Use this skill to extract or design a PPT style system that can be encoded into 
     "footer_height": 0.28,
     "gutter": 0.28
   },
+  "template_pptx": "",
+  "template_fidelity": {
+    "mode": "strict",
+    "preserve_background": true,
+    "preserve_master": true,
+    "preserve_header_footer": true
+  },
   "template_patterns": {
     "uses_header": false,
     "uses_footer": true,
@@ -50,9 +57,9 @@ Use this skill to extract or design a PPT style system that can be encoded into 
 When a template is provided:
 
 ```text
-Extract style, not content.
-Preserve slide size and visual rhythm.
-Reuse color/font/layout tendencies, header/footer treatment, page numbering, section-divider patterns, table/chart styling, shape fill/line habits and spacing.
+Treat the template as a design contract, not a loose mood board.
+Extract layout slots, backgrounds, page furniture and reusable component styles, not just colors.
+Preserve slide size, master rhythm, fonts, backgrounds, margin grid, header/footer treatment, page numbering, section-divider patterns, table/chart styling, shape fill/line habits and spacing.
 Avoid using client names, copied diagrams, data, slogans or business content from the template.
 ```
 
@@ -62,7 +69,8 @@ Use `style_spec_suggestion` from the PPTX decoder as the starting point when ava
 Keep template design colors, but map them into semantic roles: background, text, primary, secondary, accent, muted and surface.
 Preserve the template's dominant font family and realistic title/body/caption size hierarchy.
 Preserve reusable header/footer usage, but replace template-specific business text with generic or deck-specific text.
-Preserve visual style and purpose style, not source content.
+Preserve visual style, layout slots and purpose style, not source content.
+Set `template_fidelity.mode` to `strict` unless Boss requests redesign.
 ```
 
 ## No Template Design

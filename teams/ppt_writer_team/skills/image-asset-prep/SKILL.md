@@ -1,6 +1,6 @@
 # Image Asset Prep
 
-Use this skill when a PPT needs real images from Boss-provided materials or public search results.
+Use this skill when a PPT needs real images from Boss-provided materials or public search results. For video search/linking, use it together with `media-asset-sourcing`.
 
 ## Purpose
 
@@ -64,6 +64,14 @@ materials/images/image_manifest.json
 ```
 
 `image_manifest.json` contains `id`, original source, processed local path, dimensions, aspect ratio and alt/caption metadata. `deck_spec.json` should reference the processed local path or the image id from this manifest.
+
+When preparing thumbnails for videos, save them under:
+
+```text
+materials/media/thumbnails/
+```
+
+and record them in `materials/media/media_manifest.json`.
 
 ## Rules
 

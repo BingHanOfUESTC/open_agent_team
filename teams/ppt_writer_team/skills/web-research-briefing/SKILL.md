@@ -40,6 +40,17 @@ Record image page URL, direct image URL when available, publisher/owner, license
 Pass approved image URLs to image_asset_agent for download into materials/images/raw/.
 ```
 
+## Video Source Pack
+
+When public videos are needed:
+
+```text
+Prefer official product pages, company channels, conference pages, university/project pages, reputable media embeds, or open-license video sources.
+Record video page URL, title, publisher/channel, date, duration when known, thumbnail URL when available, license or rights note, accessed date and intended slide use.
+Pass approved video URLs and thumbnail URLs to image_asset_agent for materials/media/media_manifest.json.
+If download or embedding is not clearly permitted, use a thumbnail plus clickable source link rather than downloading the video.
+```
+
 ## Rules
 
 ```text
@@ -49,6 +60,7 @@ Record access date for web sources.
 Mark facts as uncertain when sources conflict.
 Keep copyrighted text summarized, not copied.
 Do not use unclear-rights images for external-facing decks without explicit review.
+Do not use unofficial video mirrors or unclear-rights videos for external-facing decks without explicit review.
 ```
 
 ## Output Files

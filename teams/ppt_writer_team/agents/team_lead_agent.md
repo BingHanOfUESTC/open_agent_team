@@ -46,8 +46,8 @@ skill_registry.md
 ```text
 1. PPT 目标：受众、场景、决策、页数、语言、风格。
 2. 素材路径：doc/docx、xls/xlsx/csv、pdf、ppt/pptx、txt、md 等。
-3. 模板路径：可选 PPT/PPTX，只用于风格迁移。
-4. 缺口：没有素材、素材不足、没有模板、格式不可读、事实需要搜索补充、图片资产不足。
+3. 模板路径：可选 PPT/PPTX。有模板时默认进入模板保真模式，而不是自由重设计。
+4. 缺口：没有素材、素材不足、没有模板、格式不可读、事实需要搜索补充、图片/视频资产不足。
 ```
 
 ## 默认调度
@@ -56,10 +56,10 @@ skill_registry.md
 1. 建立 00_boss_brief.md。
 2. 若有素材，调度 material_ingestion_agent 生成 materials/material_inventory.md 和 materials/evidence_table.md。
 3. 若素材为空或不足，调度 research_agent 生成 research/search_plan.md 和 research/source_pack.md。
-4. 若页面需要图片，调度 image_asset_agent 生成 materials/images/image_manifest.json。
-5. 若有 PPT 模板，调度 template_decoder_agent 生成 template/template_style_report.md 和 deck_spec/style_spec.json。
+4. 若页面需要图片或视频，调度 image_asset_agent 生成 materials/images/image_manifest.json 和 materials/media/media_manifest.json。
+5. 若有 PPT 模板，调度 template_decoder_agent 生成 template/template_style_report.md、template/template_fidelity_plan.md 和 deck_spec/style_spec.json。
 6. 若无模板，调度 visual_designer_agent 先创建 deck_spec/style_spec.json。
-7. 调度 deck_architect_agent 生成 deck_spec/content_outline.md。
+7. 调度 deck_architect_agent 生成 deck_spec/content_outline.md，并把页面类型映射到模板已有布局。
 8. 调度 slide_writer_agent 生成 deck_spec/deck_spec.json。
 9. 调度 visual_designer_agent 补全 layout/style 细节。
 10. 调度 ppt_encoder_agent 生成 delivery/final_deck.pptx。
@@ -77,6 +77,7 @@ final_deck.pptx 必须尽量由可编辑文本框、形状、表格和备注构�
 不得编造素材中没有且搜索无法验证的事实。
 deck_spec/deck_spec.json 是 PPT 的事实源，返修必须改 spec 后重新编码。
 需要图片时必须准备本地图片资产并在 deck_spec 中引用 image_path，不得要求作者手动下载插入。
+需要视频时必须准备本地视频、缩略图+链接或链接卡片，并在 deck_spec 中引用 video_path/video_url/thumbnail_path。
 ```
 
 ## 不足信息处理
@@ -95,4 +96,12 @@ deck_spec/deck_spec.json 是 PPT 的事实源，返修必须改 spec 后重新�
 ```text
 不要停下等模板。
 根据主题、受众、行业和语气设计视觉系统。
+```
+
+如果 Boss 给了模板：
+
+```text
+不要把模板只当作灵感板。
+必须优先保持模板页面尺寸、背景、字体、页眉页脚、版式槽位、形状样式、图表表格风格和页面节奏。
+只有在模板缺少某类页面时，才允许在模板规则内扩展新布局。
 ```

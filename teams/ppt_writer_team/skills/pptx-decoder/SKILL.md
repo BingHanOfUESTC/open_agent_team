@@ -25,7 +25,7 @@ python teams/ppt_writer_team/skills/pptx-decoder/scripts/decode_pptx.py --input 
 
 ```text
 template:
-  Extract slide size, theme/design colors, font hierarchy, layouts, shape styles, header/footer regions, image counts and reusable visual patterns.
+  Extract slide size, theme/design colors, font hierarchy, layouts, placeholder/content slots, backgrounds, shape styles, header/footer regions, image counts and reusable visual patterns.
 
 material:
   Extract titles, body text, notes, tables, media counts and slide-level summaries.
@@ -51,8 +51,8 @@ In template mode, `style_spec_suggestion` is a machine-generated starting point 
 ## Rules
 
 ```text
-Use template mode only for style transfer.
+Use template mode for template fidelity: inherit the template system and slots, not just broad style inspiration.
 Do not reuse unrelated template content.
-Preserve reusable design intent: colors, typography, spacing, page furniture, section-divider style, table/chart treatment and purpose-specific layout rhythm.
+Preserve reusable design intent: dimensions, master/theme, backgrounds, colors, typography, spacing, page furniture, section-divider style, table/chart treatment and purpose-specific layout rhythm.
 If python-pptx is missing, report dependency error and ask ppt_encoder_agent/team_lead_agent to install it.
 ```

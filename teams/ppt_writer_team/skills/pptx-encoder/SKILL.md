@@ -33,6 +33,7 @@ callout
 table
 image_placeholder
 image
+video_link
 chart_placeholder
 divider
 footer/source note
@@ -48,6 +49,8 @@ typography: title/subtitle/body/caption sizes and minimum readable sizes.
 layout_tokens: margins, gutters, header height and footer height.
 template_patterns: reusable header/footer behavior and deck-specific header/footer text.
 theme_colors: background, text, primary, secondary, accent, muted and surface.
+template_pptx: optional path to Boss-provided template. When present, renderer uses it as the base presentation where possible.
+template_fidelity: preserve_background/preserve_master/header_footer flags.
 ```
 
 The renderer dynamically reduces text size within configured minimums and distributes multiple elements across the available content area. If a slide still needs unreadably small text, revise `deck_spec.json` by splitting content across slides instead of forcing more text into one slide.
@@ -65,6 +68,22 @@ Use prepared local image assets:
 ```
 
 `image_placeholder` can also include `image_path`; if the file exists, the renderer inserts the image. If the path is missing, it renders a placeholder and records a warning.
+
+## Video Elements
+
+Prefer local video embedding only when the runtime supports it. Otherwise use clickable video cards:
+
+```json
+{
+  "type": "video_link",
+  "title": "Watch demo",
+  "video_url": "https://example.com/video",
+  "thumbnail_path": "materials/media/thumbnails/demo.jpg",
+  "caption": "Official demo video"
+}
+```
+
+The renderer inserts a thumbnail when available and adds a clickable URL card. This is the default fallback for videos because PowerPoint video embedding support varies across runtimes.
 
 ## deck_spec Minimal Shape
 
@@ -92,4 +111,6 @@ Preserve deck_spec as the source of truth.
 Report unsupported element types instead of silently dropping them.
 Use the template style system from style_spec before falling back to defaults.
 Insert prepared local images directly when deck_spec provides image_path/processed_path.
+When style_spec includes template_pptx, generate from that template base and preserve master/background behavior where possible.
+For video needs, insert a local video when supported or a clickable thumbnail/link card.
 ```

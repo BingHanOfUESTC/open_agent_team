@@ -9,6 +9,8 @@ input_files:
   - deck_spec/deck_spec.json
   - deck_spec/style_spec.json
   - materials/images/image_manifest.json
+  - materials/media/media_manifest.json
+  - template/template_fidelity_plan.md
   - delivery/final_deck.pptx
   - delivery/source_trace.md
   - encoding/encoding_report.md
@@ -42,6 +44,8 @@ skills/pptx-decoder/SKILL.md
 页面可读性：0-10
 视觉一致性：0-10
 来源追踪：0-10
+模板遵从性：0-10
+媒体完整性：0-10
 可编辑性：0-10
 综合分：0-10
 ```
@@ -55,8 +59,9 @@ skills/pptx-decoder/SKILL.md
 Boss 必须包含项缺失：返修。
 source_trace 缺失：返修。
 任一页出现明显文字遮挡、文本框重叠、正文过小或页眉页脚压住正文：返修。
-有模板但最终 PPT 未体现模板设计色彩、字体、页眉页脚、用途风格或页面节奏：返修。
+有模板但最终 PPT 未保持模板布局、字体、背景、页眉页脚、用途风格或页面节奏：返修。
 需要图片的页面仍为占位符、下载说明、缺失路径或未处理图片：返修。
+需要视频的页面仍为占位符、下载说明、缺失链接、无缩略图或无来源记录：返修。
 ```
 
 ## 输出格式
@@ -71,6 +76,7 @@ P1 问题
 模板风格保真检查
 字号与遮挡检查
 图片资产检查
+视频资产检查
 必须返修指令
 是否通过：pass / revise
 ```

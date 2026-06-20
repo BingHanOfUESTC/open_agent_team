@@ -26,9 +26,12 @@ reviews/deck_review.md
 materials/material_inventory.md
 materials/evidence_table.md
 materials/images/image_manifest.json
+materials/media/media_manifest.json
+materials/media/media_search_plan.md
 research/search_plan.md
 research/source_pack.md
 template/template_style_report.md
+template/template_fidelity_plan.md
 encoding/encoding_report.md
 encoding/decoder_report.md
 revisions/revision_plan.md
@@ -44,6 +47,8 @@ revisions/change_log.md
 必须保留 speaker notes，至少在 speaker_notes.md 中完整交付。
 必须与 deck_spec.json 的页面顺序一致。
 图片页面必须插入本地 prepared image，不得只保留图片下载说明或空占位符。
+视频页面必须插入本地视频、缩略图+链接或可点击视频卡片，不得只保留“待插入视频”说明。
+有模板时必须尽量基于模板母版/背景/字体/版式生成，不得改成完全不同的视觉系统。
 ```
 
 ## 4. executive_summary.md 要求
@@ -56,6 +61,8 @@ PPT 目标
 关键结论
 素材来源概述
 模板/视觉风格说明
+模板遵从说明和例外
+图片/视频资产使用说明
 未覆盖或低置信度信息
 ```
 
@@ -65,6 +72,7 @@ PPT 目标
 每个关键事实对应来源文件、页码、sheet、段落或 URL。
 搜索资料必须记录标题、URL、访问日期和用途。
 外部图片必须记录图片来源 URL、权利/许可风险和本地 processed_path。
+外部视频必须记录视频来源 URL、权利/许可风险、thumbnail_path、video_path 或 video_url。
 无法核实的信息必须标注为未使用或低置信度。
 ```
 
@@ -76,6 +84,8 @@ PPT 目标
 只有图片版 PPTX。
 只有 deck_spec.json，没有渲染。
 需要图片却让作者手动下载或插入。
+需要视频却让作者手动查找、下载或插入。
 使用模板 PPT 的无关原内容充数。
+有模板却只做松散风格迁移，未保留模板布局、字体、背景和页面节奏。
 没有来源追踪的事实密集型 PPT。
 ```

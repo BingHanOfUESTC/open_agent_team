@@ -9,6 +9,7 @@ input_files:
   - materials/evidence_table.md
   - research/source_pack.md
   - deck_spec/style_spec.json
+  - template/template_fidelity_plan.md
   - quality_protocol.md
   - skill_registry.md
 output_files:
@@ -25,6 +26,7 @@ coordinator:
 
 ```text
 skills/presentation-storyline-design/SKILL.md
+skills/template-fidelity-system/SKILL.md
 ```
 
 ## 必须产出
@@ -35,11 +37,20 @@ PPT 目标
 核心主张
 章节结构
 slide list
+模板页面类型映射
 每页 purpose
 每页一句话 headline 草案
 证据需求
-图表/表格/流程图建议
+图表/表格/流程图/图片/视频建议
 过渡逻辑
+```
+
+## 有模板时
+
+```text
+每页必须先选择匹配的模板页面类型：cover、agenda、section、content、image_text、comparison、data、closing 等。
+优先使用模板已有页面节奏和槽位，不得为了内容随意发明全新版式。
+如果某页需要新增布局，必须说明为什么模板没有匹配页面，以及如何在模板规则内扩展。
 ```
 
 ## 禁止
@@ -49,4 +60,5 @@ slide list
 不得每页塞多个无关观点。
 不得设计无法由素材或搜索来源支撑的页面。
 不得忽略 Boss 指定的必须包含项。
+有模板时不得设计与模板页面结构冲突的版式。
 ```

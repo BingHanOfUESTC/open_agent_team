@@ -81,6 +81,16 @@ def merge_style(style: dict[str, Any]) -> dict[str, Any]:
     return merged
 
 
+def template_fidelity(style: dict[str, Any]) -> dict[str, Any]:
+    value = style.get("template_fidelity", {})
+    return value if isinstance(value, dict) else {}
+
+
+def use_template_chrome(style: dict[str, Any]) -> bool:
+    fidelity = template_fidelity(style)
+    return bool(fidelity.get("preserve_master")) and str(fidelity.get("mode", "")).lower() in {"strict", "adaptive"}
+
+
 def color(style: dict[str, Any], name: str) -> RGBColor:
     value = style.get("theme_colors", {}).get(name, name)
     if not isinstance(value, str):
@@ -217,6 +227,52 @@ def add_textbox(
     return box
 
 
+def add_hyperlink_textbox(
+    slide,
+    text: str,
+    url: str,
+    left,
+    top,
+    width,
+    height,
+    style,
+    *,
+    role: str = "body",
+    size: int | None = None,
+    bold: bool | None = None,
+    align=PP_ALIGN.LEFT,
+):
+    box = slide.shapes.add_textbox(left, top, width, height)
+    frame = box.text_frame
+    frame.word_wrap = True
+    frame.margin_left = Inches(0.04)
+    frame.margin_right = Inches(0.04)
+    frame.margin_top = Inches(0.02)
+    frame.margin_bottom = Inches(0.02)
+    frame.clear()
+    paragraph = frame.paragraphs[0]
+    paragraph.alignment = align
+    run = paragraph.add_run()
+    run.text = text
+    if url:
+        run.hyperlink.address = url
+    fonts = style.get("fonts", {})
+    typography = style.get("typography", {})
+    font_key = "title" if role == "title" else "caption" if role in {"caption", "footer"} else "body"
+    font_name = fonts.get(font_key, fonts.get("body", "Arial"))
+    preferred = size or int(typography.get(f"{role}_size", typography.get("body_size", 15)))
+    minimum = int(typography.get("min_title_size" if role == "title" else "min_body_size", 10))
+    font_size = fitted_font_size(text, width=width, height=height, preferred=preferred, minimum=minimum)
+    set_run(
+        run,
+        font_name=font_name,
+        size=font_size,
+        rgb=color(style, "primary"),
+        bold=(role == "title") if bold is None else bold,
+    )
+    return box
+
+
 def add_bullets(slide, items: list[str], left, top, width, height, style, *, size: int | None = None) -> None:
     box = slide.shapes.add_textbox(left, top, width, height)
     frame = box.text_frame
@@ -302,6 +358,21 @@ def resolve_local_path(path_value: str, *, base_dir: Path) -> Path | None:
     return None
 
 
+def resolve_style_path(path_value: str, *, base_dir: Path) -> Path | None:
+    if not path_value:
+        return None
+    candidate = Path(path_value).expanduser()
+    candidates = [candidate]
+    if not candidate.is_absolute():
+        candidates.append(base_dir / candidate)
+        candidates.append(base_dir.parent / candidate)
+        candidates.append(Path.cwd() / candidate)
+    for path in candidates:
+        if path.exists() and path.is_file():
+            return path
+    return None
+
+
 def image_path_from_element(element: dict[str, Any]) -> str:
     for key in ("processed_path", "image_path", "path", "src", "source"):
         value = element.get(key)
@@ -327,6 +398,68 @@ def add_image(slide, image_path: Path, left, top, width, height, style, *, capti
         )
 
 
+def set_click_url(shape, url: str) -> None:
+    if not url:
+        return
+    try:
+        shape.click_action.hyperlink.address = url
+    except Exception:
+        pass
+
+
+def add_video_link(
+    slide,
+    element: dict[str, Any],
+    left,
+    top,
+    width,
+    height,
+    style,
+    *,
+    base_dir: Path,
+) -> None:
+    title = str(element.get("title") or element.get("label") or "Video")
+    url = str(element.get("video_url") or element.get("url") or element.get("href") or "")
+    thumbnail_value = str(element.get("thumbnail_path") or element.get("image_path") or element.get("processed_path") or "")
+    thumbnail = resolve_local_path(thumbnail_value, base_dir=base_dir)
+
+    if thumbnail:
+        picture = slide.shapes.add_picture(str(thumbnail), left, top, width=width, height=height)
+        set_click_url(picture, url)
+        overlay_h = Inches(0.42)
+        banner = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, left, top + height - overlay_h, width, overlay_h)
+        banner.fill.solid()
+        banner.fill.fore_color.rgb = color(style, "surface")
+        banner.line.color.rgb = color(style, "primary")
+        set_click_url(banner, url)
+        add_hyperlink_textbox(
+            slide,
+            f"Play video: {title}",
+            url,
+            left + Inches(0.12),
+            top + height - overlay_h + Inches(0.06),
+            width - Inches(0.24),
+            overlay_h - Inches(0.08),
+            style,
+            size=10,
+            bold=True,
+        )
+    else:
+        card = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, left, top, width, height)
+        card.fill.solid()
+        card.fill.fore_color.rgb = color(style, "surface")
+        card.line.color.rgb = color(style, "primary")
+        set_click_url(card, url)
+        add_textbox(slide, "VIDEO", left + Inches(0.18), top + Inches(0.18), width - Inches(0.36), Inches(0.28), style, role="caption", size=9, bold=True)
+        add_hyperlink_textbox(slide, title, url, left + Inches(0.18), top + Inches(0.58), width - Inches(0.36), height - Inches(1.0), style, size=15, bold=True)
+        if url:
+            add_hyperlink_textbox(slide, url, url, left + Inches(0.18), top + height - Inches(0.38), width - Inches(0.36), Inches(0.24), style, role="caption", size=8)
+
+    caption = str(element.get("caption") or "")
+    if caption:
+        add_textbox(slide, caption, left, top + height - Inches(0.22), width, Inches(0.22), style, role="caption", size=8)
+
+
 def add_notes(slide, notes: str) -> None:
     if not notes:
         return
@@ -338,6 +471,8 @@ def add_notes(slide, notes: str) -> None:
 
 
 def add_design_chrome(slide, style: dict[str, Any], index: int, total: int, headline: str) -> None:
+    if use_template_chrome(style):
+        return
     tokens = style.get("layout_tokens", {})
     patterns = style.get("template_patterns", {})
     margin_left = float(tokens.get("margin_left", 0.65))
@@ -408,6 +543,67 @@ def content_boxes(element_count: int, *, top: float, bottom: float, left: float,
     return boxes
 
 
+def slot_to_box(slot: dict[str, Any]) -> tuple[Any, Any, Any, Any] | None:
+    try:
+        return (
+            inches(float(slot["x"])),
+            inches(float(slot["y"])),
+            inches(float(slot["w"])),
+            inches(float(slot["h"])),
+        )
+    except Exception:
+        return None
+
+
+def layout_slots(style: dict[str, Any], layout: str) -> list[dict[str, Any]]:
+    layouts = style.get("layouts", {})
+    if not isinstance(layouts, dict):
+        return []
+    layout_spec = layouts.get(layout, {})
+    if not isinstance(layout_spec, dict):
+        return []
+    slots = layout_spec.get("slots", [])
+    return [slot for slot in slots if isinstance(slot, dict)]
+
+
+def box_for_role(style: dict[str, Any], layout: str, role: str) -> tuple[Any, Any, Any, Any] | None:
+    for slot in layout_slots(style, layout):
+        if str(slot.get("role", "")).lower() == role:
+            return slot_to_box(slot)
+    return None
+
+
+def element_boxes_from_template(style: dict[str, Any], layout: str, elements: list[dict[str, Any]]) -> list[tuple[Any, Any, Any, Any]] | None:
+    slots = [slot for slot in layout_slots(style, layout) if str(slot.get("role", "")).lower() not in {"headline", "title", "footer", "header"}]
+    if not slots:
+        return None
+    boxes: list[tuple[Any, Any, Any, Any]] = []
+    used: set[int] = set()
+    for element in elements:
+        requested = str(element.get("slot") or element.get("role") or element.get("type") or "").lower()
+        match_index = None
+        for idx, slot in enumerate(slots):
+            if idx in used:
+                continue
+            slot_role = str(slot.get("role", "")).lower()
+            if requested and requested == slot_role:
+                match_index = idx
+                break
+        if match_index is None:
+            for idx, _slot in enumerate(slots):
+                if idx not in used:
+                    match_index = idx
+                    break
+        if match_index is None:
+            return None
+        box = slot_to_box(slots[match_index])
+        if box is None:
+            return None
+        used.add(match_index)
+        boxes.append(box)
+    return boxes
+
+
 def render_element(
     slide,
     element: dict[str, Any],
@@ -461,6 +657,10 @@ def render_element(
             label = str(element.get("label") or element.get("alt") or path_value or "Image")
             add_placeholder(slide, label, left, top, width, height, style, kind="Image")
             warnings.append(f"Slide {index}: image not found; rendered placeholder for `{label}`")
+    elif element_type in {"video", "video_link", "video_placeholder"}:
+        add_video_link(slide, element, left, top, width, height, style, base_dir=base_dir)
+        if not (element.get("video_url") or element.get("url") or element.get("href") or element.get("video_path")):
+            warnings.append(f"Slide {index}: video element has no video_url/video_path")
     else:
         warnings.append(f"Slide {index}: unsupported element type `{element_type}`")
 
@@ -475,16 +675,18 @@ def render_slide(
     *,
     base_dir: Path,
 ) -> None:
-    blank_layout = prs.slide_layouts[6]
+    blank_layout = prs.slide_layouts[6] if len(prs.slide_layouts) > 6 else prs.slide_layouts[-1]
     slide = prs.slides.add_slide(blank_layout)
-
-    background = slide.background
-    fill = background.fill
-    fill.solid()
-    fill.fore_color.rgb = color(style, "background")
 
     layout = str(slide_data.get("layout", "content"))
     headline = str(slide_data.get("headline") or slide_data.get("title") or f"Slide {index}")
+    preserve_background = bool(template_fidelity(style).get("preserve_background")) and use_template_chrome(style)
+    if not preserve_background:
+        background = slide.background
+        fill = background.fill
+        fill.solid()
+        fill.fore_color.rgb = color(style, "background")
+
     typography = style.get("typography", {})
     tokens = style.get("layout_tokens", {})
     margin_left = float(tokens.get("margin_left", 0.65))
@@ -495,23 +697,39 @@ def render_slide(
 
     if layout in {"title", "cover"}:
         add_design_chrome(slide, style, index, total, headline)
+        title_box = box_for_role(style, layout, "headline") or box_for_role(style, layout, "title")
         title_top = 1.4 + max(0, header_h - 0.25)
-        add_textbox(slide, headline, inches(0.85), inches(title_top), inches(11.5), inches(1.05), style, role="title", size=int(typography.get("title_size", 34)))
+        if title_box:
+            add_textbox(slide, headline, *title_box, style, role="title", size=int(typography.get("title_size", 34)))
+        else:
+            add_textbox(slide, headline, inches(0.85), inches(title_top), inches(11.5), inches(1.05), style, role="title", size=int(typography.get("title_size", 34)))
         subtitle = slide_data.get("subtitle") or slide_data.get("purpose")
         if subtitle:
-            add_textbox(slide, str(subtitle), inches(0.9), inches(title_top + 1.08), inches(10.9), inches(0.72), style, size=int(typography.get("subtitle_size", 18)))
+            subtitle_box = box_for_role(style, layout, "subtitle")
+            if subtitle_box:
+                add_textbox(slide, str(subtitle), *subtitle_box, style, size=int(typography.get("subtitle_size", 18)))
+            else:
+                add_textbox(slide, str(subtitle), inches(0.9), inches(title_top + 1.08), inches(10.9), inches(0.72), style, size=int(typography.get("subtitle_size", 18)))
     elif layout in {"section", "divider"}:
         add_design_chrome(slide, style, index, total, headline)
-        add_textbox(slide, headline, inches(0.85), inches(2.25), inches(11.7), inches(1.0), style, role="title", size=min(int(typography.get("title_size", 32)), 34))
+        title_box = box_for_role(style, layout, "headline") or box_for_role(style, layout, "title")
+        if title_box:
+            add_textbox(slide, headline, *title_box, style, role="title", size=min(int(typography.get("title_size", 32)), 34))
+        else:
+            add_textbox(slide, headline, inches(0.85), inches(2.25), inches(11.7), inches(1.0), style, role="title", size=min(int(typography.get("title_size", 32)), 34))
         section = slide_data.get("section")
         if section:
             add_textbox(slide, str(section), inches(0.9), inches(1.72), inches(5.6), inches(0.32), style, role="caption", size=11)
     else:
         add_design_chrome(slide, style, index, total, headline)
         title_top = max(0.34, header_h + 0.12)
-        add_textbox(slide, headline, inches(margin_left), inches(title_top), inches(13.333 - margin_left - margin_right), inches(0.58), style, role="title", size=min(int(typography.get("title_size", 28)), 28))
+        title_box = box_for_role(style, layout, "headline") or box_for_role(style, layout, "title")
+        if title_box:
+            add_textbox(slide, headline, *title_box, style, role="title", size=min(int(typography.get("title_size", 28)), 28))
+        else:
+            add_textbox(slide, headline, inches(margin_left), inches(title_top), inches(13.333 - margin_left - margin_right), inches(0.58), style, role="title", size=min(int(typography.get("title_size", 28)), 28))
         elements = [item for item in slide_data.get("elements", []) if isinstance(item, dict)]
-        boxes = content_boxes(
+        boxes = element_boxes_from_template(style, layout, elements) or content_boxes(
             len(elements),
             top=title_top + 0.82,
             bottom=7.5 - footer_h - 0.34,
@@ -534,7 +752,18 @@ def render_slide(
 
 def render(deck_spec: dict[str, Any], style_spec: dict[str, Any], output: Path, report: Path, *, base_dir: Path) -> None:
     style = merge_style(style_spec)
-    prs = Presentation()
+    warnings: list[str] = []
+    template_path = resolve_style_path(str(style.get("template_pptx") or ""), base_dir=base_dir)
+    if template_path:
+        prs = Presentation(str(template_path))
+        slide_id_list = prs.slides._sldIdLst  # python-pptx has no public API for clearing template slides.
+        for slide_id in list(slide_id_list):
+            slide_id_list.remove(slide_id)
+    else:
+        prs = Presentation()
+        if style.get("template_pptx"):
+            warnings.append(f"Template PPTX not found: {style.get('template_pptx')}")
+
     if style.get("slide_size") == "16:9":
         prs.slide_width = Inches(13.333)
         prs.slide_height = Inches(7.5)
@@ -543,7 +772,6 @@ def render(deck_spec: dict[str, Any], style_spec: dict[str, Any], output: Path, 
     if not isinstance(slides, list) or not slides:
         raise ValueError("deck_spec must contain a non-empty slides list")
 
-    warnings: list[str] = []
     for index, slide_data in enumerate(slides, start=1):
         if not isinstance(slide_data, dict):
             warnings.append(f"Slide {index}: skipped non-object slide")
