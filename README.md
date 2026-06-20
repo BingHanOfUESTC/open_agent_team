@@ -125,6 +125,7 @@ Engineering teams produce practical artifacts:
 
 | Team | Use it for | Typical deliverables |
 | --- | --- | --- |
+| `auto_research_team` | Automated research loops from topic to reproducible code, experiments, and paper-style report | research plan, code/data manifest, experiment logs, analysis, LaTeX report |
 | `ppt_writer_team` | Editable presentations from materials, templates, and research | `.pptx`, speaker notes, source trace, deck spec |
 | `paper_survey_team` | Literature surveys, paper radar, and paper deep reads | ranked paper lists, survey report, lineage map, reading path |
 | `paper_writing_team` | Academic writing, related work, manuscript revision, rebuttal | manuscript sections, literature synthesis, review notes, rebuttal strategy |

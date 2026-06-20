@@ -124,6 +124,7 @@ agent_team install --name ppt_writer_team --path /path/to/your/project
 
 | Team | 适合做什么 | 典型交付件 |
 | --- | --- | --- |
+| `auto_research_team` | 从研究主题自动推进到可复现代码、实验和论文式报告 | 研究计划、代码/数据清单、实验日志、结果分析、LaTeX 报告 |
 | `ppt_writer_team` | 从素材、模板和公开资料生成可编辑 PPT | `.pptx`、讲稿、来源追踪、deck spec |
 | `paper_survey_team` | 文献综述、论文雷达、单篇论文深读 | 论文列表、调研报告、脉络图、阅读路线 |
 | `paper_writing_team` | 论文写作、related work、返修、rebuttal | 论文段落、文献综合、审稿意见、rebuttal 策略 |
