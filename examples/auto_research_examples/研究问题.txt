@@ -1,0 +1,5 @@
+Transformer是当代大模型的基础创新，从transformer被提出发展至今，众多科研人员尝试对其进行创新改造，我注意到Kimi团队提出的Attention Residuals这篇论文https://arxiv.org/pdf/2603.15031， 这篇论文第一次让我们注意到对LLM推理时context上下文注意力衰减的问题可以用depthwise attention来加以缓解，但是这篇论文的解法仍然存在问题，请你从动力学角度以及各种物理建模、数学建模角度分析如何优化transformer，让其context的上下文注意力以一种更优雅更有效的形式得以优化。
+注意：
+1.你实验的时候可以参照karpathy的minGPT来进行改造实验https://github.com/karpathy/minGPT
+2.你可以通过conda activate auto_research来激活这个运行环境并进行实验；
+3.本地硬件环境是RTX3090*2+NVLink，你做实验的时候要考虑显存大小和利用率问题；

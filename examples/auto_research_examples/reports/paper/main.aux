@@ -1,0 +1,128 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{vaswani2017attention}
+\citation{he2016deep}
+\citation{kimiteam2026attnres}
+\citation{dong2021attention}
+\citation{wavy2025neurips}
+\citation{kimiteam2026attnres}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{eq:standard_residual}{{1}{1}{Introduction}{equation.1.1}{}}
+\citation{dong2021attention}
+\citation{wavy2025neurips}
+\citation{kimiteam2026attnres}
+\citation{bai2019deq}
+\citation{wavy2025neurips}
+\citation{boltzmann2026}
+\citation{chen2018neuralode}
+\citation{neuralode2025iclr}
+\citation{xiao2023streaming}
+\citation{press2022alibi}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Depth-wise Information Degradation}{2}{subsection.2.1}\protected@file@percent }
+\citation{bachlechner2020rezero}
+\citation{deepnet2022}
+\citation{graves2014ntm}
+\citation{dai2019transformerxl}
+\citation{vig2020}
+\citation{clark2019}
+\citation{xiao2023streaming}
+\citation{zhai2021aft}
+\citation{kimiteam2026attnres}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Physics-Inspired Architecture Design}{3}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Learned Residual Gating and Memory Architectures}{3}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Entropy-Based Attention Analysis}{3}{subsection.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Background: The Diffusion Analogy}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Standard Residual as Discrete Heat Equation}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}The Residual Dilution Problem}{3}{subsection.3.2}\protected@file@percent }
+\citation{he2016deep}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Two Competing Roles of the Residual Connection}{4}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Anti-Diffusion Depth Coupling (ADDC)}{4}{section.4}\protected@file@percent }
+\newlabel{sec:addc}{{4}{4}{Anti-Diffusion Depth Coupling (ADDC)}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Motivation and Hypothesis}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Method}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{eq:addc_ema}{{2}{4}{Method}{equation.4.2}{}}
+\newlabel{eq:addc_residual}{{3}{4}{Method}{equation.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Experiments}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1}Fixed Gamma: A Sharp Phase Transition}{4}{subsubsection.4.3.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces ADDC $\gamma $ sweep (1500 iterations, seed 42). $\gamma \geq 0.1$ causes complete training failure---loss remains at random initialization level. Only $\gamma \leq 0.05$ allows learning. The best fixed $\gamma = 0.01$ achieves a 10.4\% PPL improvement over standard at this intermediate training stage.\relax }}{5}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:gamma_sweep}{{1}{5}{ADDC $\gamma $ sweep (1500 iterations, seed 42). $\gamma \geq 0.1$ causes complete training failure---loss remains at random initialization level. Only $\gamma \leq 0.05$ allows learning. The best fixed $\gamma = 0.01$ achieves a 10.4\% PPL improvement over standard at this intermediate training stage.\relax }{figure.caption.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2}Learnable Gamma: The Model Discovers Smoothing}{5}{subsubsection.4.3.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Learned $\gamma $ values across all 3 seeds (M config, 5000 iterations). All learned $\gamma $ are negative, peaking at layers 3--4 (mid-depth) with $|\gamma | \approx 0.15$--$0.25$. The model uniformly prefers smoothing over sharpening.\relax }}{5}{figure.caption.2}\protected@file@percent }
+\newlabel{fig:learned_gamma}{{2}{5}{Learned $\gamma $ values across all 3 seeds (M config, 5000 iterations). All learned $\gamma $ are negative, peaking at layers 3--4 (mid-depth) with $|\gamma | \approx 0.15$--$0.25$. The model uniformly prefers smoothing over sharpening.\relax }{figure.caption.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.3}Performance and Diagnostics}{6}{subsubsection.4.3.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Shakespeare results (8-layer, 25M, 5000 iterations, 3 seeds). ADDC achieves the best PPL. Standard is the primary baseline. ReZero and AttnRes significantly underperform at this scale (implementation may be suboptimal---see Limitations).\relax }}{6}{table.caption.3}\protected@file@percent }
+\newlabel{tab:addc_main}{{1}{6}{Shakespeare results (8-layer, 25M, 5000 iterations, 3 seeds). ADDC achieves the best PPL. Standard is the primary baseline. ReZero and AttnRes significantly underperform at this scale (implementation may be suboptimal---see Limitations).\relax }{table.caption.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Entropy-Regularized Attention (ERA)}{6}{section.5}\protected@file@percent }
+\newlabel{sec:era}{{5}{6}{Entropy-Regularized Attention (ERA)}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Motivation}{6}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Method}{6}{subsection.5.2}\protected@file@percent }
+\newlabel{eq:entropy}{{4}{6}{Method}{equation.5.4}{}}
+\newlabel{eq:era_loss}{{5}{6}{Method}{equation.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Experiments}{7}{subsection.5.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces ERA $\lambda $ sweep results (2000 iterations, seed 42). $\lambda =0.05$ achieves the best validation PPL with an 8.84-point improvement over baseline. All $\lambda > 0$ improve validation PPL, establishing causal evidence that attention concentration benefits language modeling.\relax }}{7}{table.caption.4}\protected@file@percent }
+\newlabel{tab:era}{{2}{7}{ERA $\lambda $ sweep results (2000 iterations, seed 42). $\lambda =0.05$ achieves the best validation PPL with an 8.84-point improvement over baseline. All $\lambda > 0$ improve validation PPL, establishing causal evidence that attention concentration benefits language modeling.\relax }{table.caption.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces ERA $\lambda $ sweep: validation PPL as a function of $\lambda $. All $\lambda > 0$ improve over baseline. Optimal $\lambda =0.05$. The U-shaped curve suggests an optimal attention concentration level.\relax }}{7}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:era}{{3}{7}{ERA $\lambda $ sweep: validation PPL as a function of $\lambda $. All $\lambda > 0$ improve over baseline. Optimal $\lambda =0.05$. The U-shaped curve suggests an optimal attention concentration level.\relax }{figure.caption.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Causal Interpretation}{7}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Memory Native Transformer (MNT)}{8}{section.6}\protected@file@percent }
+\newlabel{sec:mnt}{{6}{8}{Memory Native Transformer (MNT)}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Theoretical Motivation: Two Conflicting Purposes}{8}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Architecture}{8}{subsection.6.2}\protected@file@percent }
+\newlabel{eq:mnt_residual}{{6}{8}{Architecture}{equation.6.6}{}}
+\newlabel{eq:mnt_retrieve}{{7}{8}{Architecture}{equation.6.7}{}}
+\newlabel{eq:mnt_gate}{{8}{8}{Architecture}{equation.6.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Shakespeare Experiments}{8}{subsection.6.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Shakespeare results: MNT vs.\ baselines (8-layer, 25M, 5000 iterations, seed 42). MNT underperforms the standard Transformer at shallow depth.\relax }}{9}{table.caption.6}\protected@file@percent }
+\newlabel{tab:mnt_shakespeare}{{3}{9}{Shakespeare results: MNT vs.\ baselines (8-layer, 25M, 5000 iterations, seed 42). MNT underperforms the standard Transformer at shallow depth.\relax }{table.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}OpenWebText Experiments}{9}{subsection.6.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces OpenWebText results (GPT-2 124M, 12-layer, 10,000 steps, seed 42). MNT with $d_k=128$ is competitive but not better. MNT with $d_k=192$ diverges to NaN (numerical instability). The memory gate converges to 0.73, indicating active use of the memory pathway.\relax }}{9}{table.caption.7}\protected@file@percent }
+\newlabel{tab:mnt_openweb}{{4}{9}{OpenWebText results (GPT-2 124M, 12-layer, 10,000 steps, seed 42). MNT with $d_k=128$ is competitive but not better. MNT with $d_k=192$ diverges to NaN (numerical instability). The memory gate converges to 0.73, indicating active use of the memory pathway.\relax }{table.caption.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Summary of All Results}{10}{subsection.6.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Complete Shakespeare results (8-layer, 25M, 5000 iterations, 3 seeds unless noted).\relax }}{10}{table.caption.8}\protected@file@percent }
+\newlabel{tab:full_results}{{5}{10}{Complete Shakespeare results (8-layer, 25M, 5000 iterations, 3 seeds unless noted).\relax }{table.caption.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Main method comparison on Shakespeare (M config, validation PPL). Standard Transformer and ADDC perform similarly; ReZero and AttnRes underperform at this scale. MNT is competitive but slightly worse.\relax }}{10}{figure.caption.9}\protected@file@percent }
+\newlabel{fig:main}{{4}{10}{Main method comparison on Shakespeare (M config, validation PPL). Standard Transformer and ADDC perform similarly; ReZero and AttnRes underperform at this scale. MNT is competitive but slightly worse.\relax }{figure.caption.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion}{10}{section.7}\protected@file@percent }
+\newlabel{sec:discussion}{{7}{10}{Discussion}{section.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Why Physical Analogies Fail for Architecture Design}{10}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}The Self-Discovered Smoothing Mechanism}{11}{subsection.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Gradient-Memory Decoupling: Theory vs.\ Practice}{11}{subsection.7.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Limitations}{11}{subsection.7.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{12}{section.8}\protected@file@percent }
+\bibcite{vaswani2017attention}{1}
+\bibcite{he2016deep}{2}
+\bibcite{kimiteam2026attnres}{3}
+\bibcite{dong2021attention}{4}
+\bibcite{wavy2025neurips}{5}
+\bibcite{bai2019deq}{6}
+\bibcite{chen2018neuralode}{7}
+\bibcite{neuralode2025iclr}{8}
+\bibcite{bachlechner2020rezero}{9}
+\bibcite{deepnet2022}{10}
+\bibcite{boltzmann2026}{11}
+\bibcite{xiao2023streaming}{12}
+\bibcite{press2022alibi}{13}
+\bibcite{zhai2021aft}{14}
+\bibcite{graves2014ntm}{15}
+\bibcite{dai2019transformerxl}{16}
+\bibcite{vig2020}{17}
+\bibcite{clark2019}{18}
+\gdef \@abspage@last{14}
